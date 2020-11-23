@@ -30,29 +30,23 @@ const char index_html[] PROGMEM = R"rawliteral(
   <table align="center">
     <h2 align="center" style="background: red;color: #FFF;padding-top: 20px;padding-bottom: 20px;" id="tieude"><Span style ="color: black; font-family: Arial; font-size: 28px"><STRONG>Hệ thống điều khiển và giám sát thiết bị trong nhà</STRONG> </span></h2>
     <p align="center"> <span style ="color: black; font-family: Arial; font-size: 20px"> <STRONG><u>Phòng khách</u></STRONG> </span> </p>
+    
     <p align="center"> 
       <span  style ="color: red; font-family: Arial; font-size: 15px"> <Strong><u>Nhiệt độ hiện tại là :</u></Strong></span> 
       <span id="temperature">%TEMPERATURE%</span>
       <sup class="uints">&deg;C</sup>
     </p>
     <p align="center"> 
-      <span  style ="color: red; font-family: Arial; font-size: 15px"> <Strong><u>Độ ẩm hiện tại là :</u></Strong></span>
+      <span  style ="color: red; font-family: Arial; font-size: 15px"> <Strong><u>Độ ẩm hiện tại là  :</u></Strong></span>
       <span id="humidity">%HUMIDITY%</span>
       <sup class="uints">&#37;</sup>
     </p>
    </table>
-   <table align="center">
-    <tr>
-      <td width ="30%"> 
-        <p align="center"> 
-          <Span style ="color: red; font-family: Arial; font-size: 18px"><Strong>Đèn</Strong></span> 
-         </p> 
-      </td>
-      <td><a href='/batden1'><button class='b'>Bật</button></a><td>
-      <td><a href='/tatden1'><button class='t'>Tắt</button></a><td>
-      <td width="30%"> </td>
-    </tr> 
-   </table>
+   <div align="center">
+   <Span align="center" style ="color: red; font-family: Arial; font-size: 18px"><Strong>Đèn</Strong></span> 
+      <button class="b"><a href="/batden1">ON</a></button>
+      <button class="t"><a href="/tatden1">OFF</a></button>
+   </div>  
 </body>
 <script>
 setInterval(function ( ) {
