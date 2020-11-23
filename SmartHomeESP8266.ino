@@ -26,22 +26,57 @@ void setup() {
   Serial.println(WiFi.localIP());
 /*********** Setup WiFi end ************/
 
-/*********** Route for root /web page ******/
+/*********** Route for root /web page ***********/
+/***************************************************/
 server.on("/",mainPage);
+/********* Phòng khách ********************/
 server.on("/temperature",readTemp);
 server.on("/humidity",readHumi);
-server.on("/batden1",on_D1);
-server.on("/tatden1",off_D1);
+server.on("/batdenkhach",on_ledKhach);
+server.on("/tatdenkhach",off_ledKhach);
+server.on("/mocuasokhach",open_CuaKhach);
+server.on("/dongcuasokhach",close_CuaKhach);
+/********* Cửa nhà và cổng ****************/
+server.on("/mocong",open_Cong);
+server.on("/dongcong",close_Cong);
+server.on("/mocuanha",open_CuaNha);
+server.on("/dongcuanha",close_CuaNha);
+/********** Phòng Ăn *********************/
+server.on("/gas",readGas);
+server.on("/batdenphongan",on_ledAn);
+server.on("/tatdenphongan",off_ledAn);
+server.on("/mocuasophongan",open_CuaAn);
+server.on("/dongcuasophongan",close_CuaAn);
+/*********** Phòng ngủ 1 *****************/
+server.on("/batdenphongngu1",on_ledNgu1);
+server.on("/tatdenphongngu1",off_ledNgu1);
+server.on("/mocuasophongngu1",open_CuaNgu1);
+server.on("/dongcuasophongngu1",close_CuaNgu1);
+/********** Phòng ngủ 2 ******************/
+server.on("/batdenphongngu2",on_ledNgu2);
+server.on("/tatdenphongngu2",off_ledNgu2);
+server.on("/mocuasophongngu2",open_CuaNgu2);
+server.on("/dongcuasophongngu2",close_CuaNgu2);
+/********** Phòng ngủ 3 ******************/
+server.on("/batdenphongngu3",on_ledNgu3);
+server.on("/tatdenphongngu3",off_ledNgu3);
+server.on("/mocuasophongngu3",open_CuaNgu3);
+server.on("/dongcuasophongngu3",close_CuaNgu3);
+/***************************************************/
 server.begin();
 }
 
 void loop() {
   server.handleClient();
 }
+
+/************ Function route ***********************/
+/***************** MAIN PAGE ***********************/
 void mainPage(){
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
+/***************** Phòng Khách ******************************/
 void readTemp(){
   temp = temp +0.01;
   if(isnan(temp)){
@@ -50,7 +85,6 @@ void readTemp(){
     server.send(200,"text/plane",String(temp));
   }
 }
-
 void readHumi(){
   humi = humi +0.01;
   if (isnan(humi)){
@@ -59,13 +93,131 @@ void readHumi(){
     server.send(200,"text/plane",String(humi));
   }
 }
-void on_D1(){
+void on_ledKhach(){
   digitalWrite(16,LOW);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 
-void off_D1(){
+void off_ledKhach(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void open_CuaKhach(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_CuaKhach(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+/****************** Cửa nhà và cổng ****************************/
+void open_Cong(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_Cong(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void open_CuaNha(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_CuaNha(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+/****************** Phòng Bếp **************************************/
+void readGas(){
+  
+}
+void on_ledAn(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void off_ledAn(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void open_CuaAn(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_CuaAn(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+/*********************** Phòng ngủ 1 *********************/
+void on_ledNgu1(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void off_ledNgu1(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void open_CuaNgu1(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_CuaNgu1(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+/******************* Phòng Ngủ 2 **********************/
+void on_ledNgu2(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void off_ledNgu2(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void open_CuaNgu2(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_CuaNgu2(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+/*************************Phòng ngủ 3 ***********************/
+void on_ledNgu3(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void off_ledNgu3(){
+  digitalWrite(16,HIGH);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void open_CuaNgu3(){
+  digitalWrite(16,LOW);
+  String s = FPSTR(index_html);
+  server.send(200,"text/html",s);
+}
+void close_CuaNgu3(){
   digitalWrite(16,HIGH);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
