@@ -15,7 +15,7 @@ const char index_html[] PROGMEM = R"rawliteral(
   </style>
   <style>
     body{
-      background-image: url('https://3.bp.blogspot.com/-kZ9ci5Yj4xM/WMOU2eh_BEI/AAAAAAAAAT8/4X18ukP49Bs1hfLt8NvetXzA9J03BtRGgCLcB/s1600/chinese_girl.jpg');
+      background-image: 
       background-attachment: fixed;
       background-repeat: no-repeat;
       background-position: center;
