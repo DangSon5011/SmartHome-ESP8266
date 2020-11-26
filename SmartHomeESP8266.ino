@@ -1,19 +1,16 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include "html.h"
-const char*ssid = "Redmi Note 8 Pro";
-const char*password = "244466666";
+//const char*ssid = "Redmi Note 8 Pro";
+//const char*password = "244466666";
+const char*ssid = "TP-LINK_E57E";
+const char*password = "12341234";
 const long interval = 10000; //Thời gian update tự động giá trị trên server
 float temp = 0, humi = 0;
-byte a= 0B00000000;
+byte a= 0;
 
 
 ESP8266WebServer server(80); // Tạo đối tượng WebServer object on port 80
-void sendData(void)
-{
-
-  Serial.write(a);
-}
 
 void setup() {
   pinMode(16,OUTPUT);
@@ -21,15 +18,15 @@ void setup() {
 /****** Setup WiFi begin **********/
   WiFi.begin(ssid,password);
   Serial.begin(115200);
-  Serial.print("Connecting");
+ // Serial.print("Connecting");
   while (WiFi.status() != WL_CONNECTED){
     delay(500);
-    Serial.print("...");
+    //Serial.print("...");
   }
-  Serial.print("WiFi connected to ");
-  Serial.println(ssid);
-  Serial.print("Local IP: ");
-  Serial.println(WiFi.localIP());
+  //Serial.print("WiFi connected to ");
+ // Serial.println(ssid);
+ // Serial.print("Local IP: ");
+  //Serial.println(WiFi.localIP());
 /*********** Setup WiFi end ************/
 
 /*********** Route for root /web page ***********/
@@ -102,7 +99,7 @@ void readHumi(){
 void on_ledKhach(){
   digitalWrite(16,LOW);
   a = a | (1<<5);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
@@ -111,21 +108,21 @@ void on_ledKhach(){
 void off_ledKhach(){
   digitalWrite(16,HIGH);
   a = a & ~(1<<5);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void open_CuaKhach(){
   digitalWrite(16,LOW);
   a = a | (1<<4);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void close_CuaKhach(){
   digitalWrite(16,HIGH);
   a = a & ~(1<<4);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
@@ -133,28 +130,28 @@ void close_CuaKhach(){
 void open_Cong(){
   digitalWrite(16,LOW);
   a = a | (1<< 7);// & ~0;
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void close_Cong(){
   digitalWrite(16,HIGH);
   a = a & ~(1<<7);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void open_CuaNha(){
   digitalWrite(16,LOW);
   a = a | (1<<6);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void close_CuaNha(){
   digitalWrite(16,HIGH);
    a = a & ~(1<<6);
-   Serial.println(a,BIN);
+   Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
@@ -165,28 +162,28 @@ void readGas(){
 void on_ledAn(){
   digitalWrite(16,LOW);
   a = a | (1 << 3);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void off_ledAn(){
   digitalWrite(16,HIGH);
    a = a & ~(1 << 3);
-   Serial.println(a,BIN);
+   Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void open_CuaAn(){
   digitalWrite(16,LOW);
   a = a | (1 << 2);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void close_CuaAn(){
   digitalWrite(16,HIGH);
   a = a & ~(1 << 2);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
@@ -194,28 +191,28 @@ void close_CuaAn(){
 void on_ledNgu1(){
   digitalWrite(16,LOW);
   a = a | (1 << 1);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void off_ledNgu1(){
   digitalWrite(16,HIGH);
   a = a & ~(1<<1);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void open_CuaNgu1(){
   digitalWrite(16,LOW);
    a = a | (1 << 0);
-   Serial.println(a,BIN);
+   Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
 void close_CuaNgu1(){
   digitalWrite(16,HIGH);
   a = a & ~(1 << 0);
-  Serial.println(a,BIN);
+  Serial.write(a);
   String s = FPSTR(index_html);
   server.send(200,"text/html",s);
 }
